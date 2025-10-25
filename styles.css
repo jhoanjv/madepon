@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #213555;
+    color:#F5EFE7 ;
+}
+
+#sect-pets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.titulo {
+    color: #F5EFE7;
+}
+
+.subtitulo {
+    color: #F5EFE7;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    display: none;
+}
+
+.tarjeta-mokepon {
+    width: 220px;
+    height: 100px;
+    padding: 10px;
+    background: #3E5879;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.tarjeta-mokepon:hover{
+    cursor: pointer;
+}
+
+.tarjeta-mokepon img{
+    width: 80px;
+}
+
+.btn-mascota{
+    width: 150px;
+    height: 40px;
+    background: #3E5879;
+    border-radius: 10px;
+    border: 2px solid white;
+    color: #F5EFE7;
+    margin: 30px;
+}

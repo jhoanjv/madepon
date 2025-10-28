@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -18,19 +20,32 @@ body {
 
 .titulo {
     color: #F5EFE7;
+    margin-top: 30px;
+
 }
 
 .subtitulo {
     color: #F5EFE7;
 }
 
-.tarjetas {
+.btns-attack {
     display: flex;
     gap: 10px;
 }
 
+.tarjetas{
+    margin: 30px 0 30px 0;
+    display: grid;
+    grid-template-columns: 220px 220px 220px;
+    gap: 30px;
+}
+
 input {
     display: none;
+}
+
+input:checked + .tarjeta-mokepon{
+    background: #2792bd;
 }
 
 .tarjeta-mokepon {
@@ -38,13 +53,15 @@ input {
     height: 100px;
     padding: 10px;
     background: #3E5879;
-    margin: 10px;
     border-radius: 10px;
     display: flex;
+    justify-content: space-around;
+    transition: 3s border;
 }
 
 .tarjeta-mokepon:hover {
-    cursor: pointer;
+    cursor: pointer; 
+    border: #F5EFE7 solid 1px;
 }
 
 .tarjeta-mokepon img {
@@ -67,7 +84,7 @@ input {
     align-items: center;
 }
 
-.btn-ataque {
+.btn-attack {
     font-size: medium;
     width: 150px;
     height: 40px;
@@ -85,8 +102,11 @@ input {
 }
 
 .sec-messages-combat {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 #back-last-result {
@@ -133,4 +153,15 @@ input {
     background: #3E5879;
     border-radius: 10px;
     padding: 10px;
+}
+
+
+@media (max-width: 700px){
+    .btns-attack{
+        flex-direction: column;
+    }
+
+    .tarjetas{
+        grid-template-columns: 220px;
+    }
 }

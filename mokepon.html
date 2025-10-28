@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOKEPON</title>
-    <script src="./js/mokepon.js"></script>
     <link rel="stylesheet" href="styleS.css">
 </head>
 
@@ -26,31 +25,35 @@
 
         <h2 class="subtitulo">Selecciona tu ataque:</h2>
 
-        <p>
-            <button id="btn-fuego" class="btn-ataque">Fuego</button>
-            <button id="btn-agua" class="btn-ataque">Agua</button>
-            <button id="btn-tierra" class="btn-ataque">Tierra</button>
-        </p>
+        <div class="btns-attack">
+            <button id="btn-fuego" class="btn-attack">Fuego</button>
+            <button id="btn-agua" class="btn-attack">Agua</button>
+            <button id="btn-tierra" class="btn-attack">Tierra</button>
+        </div>
+
+        <div id="back-last-result">
+            <div id="last-result">
+                <button id="btn-restart" onclick="location.reload(true)">Reiniciar</button>
+            </div>
+        </div>
+        <div class="sec-messages-combat" id="sec-messages-combat">
+            <div class="history-attack" id="attack-player">
+                Tu:
+                <span id="life-player"></span>
+                <span id="pet-player"></span>
+            </div>
+            <div class="history-attack" id="result">Resultado:
+            </div>
+            <div class="history-attack" id="attack-enemy">
+                Enemigo:
+                <span id="life-enemy"></span>
+                <span id="pet-enemy"></span>
+            </div>
+        </div>
     </section>
 
-    <div id="back-last-result">
-        <div id="last-result">
-            <button id="btn-restart" onclick="location.reload(true)">Reiniciar</button>
-        </div>
-    </div>
-    <div class="sec-messages-combat">
-        <div class="history-attack" id="attack-player">
-            Tu:
-            <span id="life-player"></span>
-            <span id="pet-player"></span>
-        </div>
-        <div class="history-attack" id="result">Resultado:
-        </div>
-        <div class="history-attack" id="attack-enemy">
-            Enemigo:
-            <span id="life-enemy"></span>
-            <span id="pet-enemy"></span>
-        </div>
-    </div>
+
+    <script src="./js/mokepon.js"></script>
 </body>
+
 </html>

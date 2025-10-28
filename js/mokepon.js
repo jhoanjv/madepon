@@ -23,11 +23,41 @@ pets = [
 
 atacks = ["Agua", "Fuego", "Tierra"]
 
+const btnMascotaJugador = document.getElementById('btn-mascota');
+const btnAttackFuego = document.getElementById('btn-fuego')
+const btnAttackAgua = document.getElementById('btn-agua')
+const btnAttackTierra = document.getElementById('btn-tierra')
+const backLastResult = document.getElementById('back-last-result')
+const seleccionAtaque = document.getElementById('seleccion-ataque')
+const sectionPets = document.getElementById("tarjetas")
+const spanLifePlayer = document.getElementById('life-player')
+const spanLifeEnemy = document.getElementById('life-enemy')
+const spanPetPlayer = document.getElementById('pet-player')
+const spanPetEmnemy = document.getElementById('pet-enemy')
+const secPets = document.getElementById('sect-pets')
+const ctnResult = document.getElementById('result')
+const ctnEnemy = document.getElementById('attack-enemy')
+const ctnPlayer = document.getElementById('attack-player')
+const secMessages = document.getElementById('last-result')
+
 let attackPlayer
 let attackEnemy
 let result
 let lifePlayer = 3
 let lifeEnemy = 3
+
+function runGame() {
+    
+    btnMascotaJugador.addEventListener('click', selectMascotaJugador)
+    btnAttackFuego.addEventListener('click', attackFuego)
+    btnAttackAgua.addEventListener('click', attackAgua)
+    btnAttackTierra.addEventListener('click', attackTierra)
+
+    renderPets();
+    renderLife()
+    hideObject(backLastResult)
+    hideObject(seleccionAtaque)
+}
 
 function hideObject(object) {
     object.style.display = 'none'
@@ -37,23 +67,21 @@ function showObject(object) {
     object.style.display = 'flex'
 }
 
-function bloquedBtns() {
-    const btnAgua = document.getElementById('btn-agua')
-    const btnFuego = document.getElementById('btn-fuego')
-    const btnTierra = document.getElementById('btn-tierra')
-    
-    btnAgua.disabled = true
-    btnFuego.disabled = true
-    btnTierra.disabled = true
-}
-
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+function finishGame(message) {
+    btnAttackAgua.disabled = true
+    btnAttackFuego.disabled = true
+    btnAttackTierra.disabled = true
+
+    createLastMessage(message)
+    showObject(backLastResult)
+}
+
 function renderPets() {
-    const sectionPets = document.getElementById("tarjetas")
-    
+
     pets.forEach(pet => {
         // Crear input
         const radioInput = document.createElement("input");
@@ -61,79 +89,67 @@ function renderPets() {
         radioInput.id = pet.name;
         radioInput.name = "mascota";
         radioInput.value = pet.name;
-        
+
         // Crear label
         const labelInput = document.createElement("label");
         labelInput.htmlFor = pet.name;
         labelInput.className = "tarjeta-mokepon";
-        
+
         // Crear texto
         const span = document.createElement("span");
         span.textContent = pet.name;
-        
+
         // Crear imagen
         const img = document.createElement("img");
         img.src = pet.img;
         img.alt = pet.name;
         img.className = "pet-img";
-        
+
         // Estructura: <label> <img> <span> </label>
         labelInput.appendChild(span);
         labelInput.appendChild(img);
-        
+
         // Insertar en el contenedor
         sectionPets.appendChild(radioInput);
         sectionPets.appendChild(labelInput);
     });
 }
 
-
-
-
-
 function renderLife() {
-    
-    const spanLifePlayer = document.getElementById('life-player')
-    const spanLifeEnemy = document.getElementById('life-enemy')
-    
     spanLifePlayer.innerHTML = lifePlayer
     spanLifeEnemy.innerHTML = lifeEnemy
-    
+
     if (lifeEnemy == 0) {
-        createLastMessage('Ganaste')
-        bloquedBtns()
-        showObject(document.getElementById('back-last-result'))
+        finishGame('Ganaste')
     }
     else if (lifePlayer == 0) {
-        createLastMessage('Perdiste')
-        bloquedBtns()
-        showObject(document.getElementById('back-last-result'))
+        finishGame('Perdiste')
     }
 }
 
 function selectMascotaJugador() {
-    let selectePet = document.querySelector('input[name="mascota"]:checked');
-    let spanPetPlayer = document.getElementById('pet-player')
+    let selectePet = document.querySelector('input[name="mascota"]:checked')
+
     if (selectePet == null) {
-        alert("Debes seleccionar una mascota")
+        return alert("Debes seleccionar una mascota")
     }
-    else {
-        spanPetPlayer.innerHTML = selectePet.id
-        selectPetEnemy();
-        showObject(document.getElementById('seleccion-ataque'))
-        hideObject(document.getElementById('sect-pets'))
-    }
+
+    spanPetPlayer.innerHTML = selectePet.id
+    selectPetEnemy();
+
+    hideObject(secPets)
+    showObject(seleccionAtaque)
+
 }
 
 function selectPetEnemy() {
-    let spanPetEmnemy = document.getElementById('pet-enemy')
     let petEnemy = pets[random(0, pets.length - 1)]
     spanPetEmnemy.innerHTML = petEnemy.name
 }
 
 function attackFuego() {
     attackPlayer = 'Fuego'
-    selectAttackEnemy() 
+    selectAttackEnemy()
 }
 
 function attackAgua() {
@@ -148,15 +164,12 @@ function attackTierra() {
 
 function selectAttackEnemy() {
     attackEnemy = atacks[random(0, atacks.length - 1)]
-    console.log(attackPlayer, attackEnemy);
     renderMessage()
     renderLife()
 }
 
 function winDecision() {
-    
-    console.log(attackEnemy == attackPlayer);
-    
+
     if ((attackPlayer == 'Fuego') && (attackEnemy == 'Agua')) {
         result = 'Ganaste'
         lifeEnemy -= 1
@@ -176,15 +189,11 @@ function winDecision() {
         result = 'Perdiste'
         lifePlayer -= 1
     }
-    
+
 }
 
 function renderMessage() {
     winDecision(result)
-
-    const ctnResult = document.getElementById('result')
-    const ctnEnemy = document.getElementById('attack-enemy')
-    const ctnPlayer = document.getElementById('attack-player')
 
     let alertResutl = document.createElement('p')
     let alertPlayer = document.createElement('p')
@@ -194,36 +203,15 @@ function renderMessage() {
     alertPlayer.innerHTML = attackEnemy
     alertEnemy.innerHTML = attackPlayer
 
-
     ctnResult.appendChild(alertResutl)
     ctnEnemy.appendChild(alertPlayer)
     ctnPlayer.appendChild(alertEnemy)
-
 }
 
 function createLastMessage(message) {
-    const secMessages = document.getElementById('last-result')
     let messageP = document.createElement('p')
     messageP.innerHTML = message
     secMessages.appendChild(messageP)
 }
 
-function runGame() {
-    let btnMascotaJugador = document.getElementById('btn-mascota');
-    btnMascotaJugador.addEventListener('click', selectMascotaJugador)
-    
-    btnAttackFuego = document.getElementById('btn-fuego')
-    btnAttackFuego.addEventListener('click', attackFuego)
-    
-    btnAttackAgua = document.getElementById('btn-agua')
-    btnAttackAgua.addEventListener('click', attackAgua)
-    
-    btnAttackTierra = document.getElementById('btn-tierra')
-    btnAttackTierra.addEventListener('click', attackTierra)
-    
-    renderPets();
-    renderLife()
-    hideObject(document.getElementById('back-last-result'))
-    hideObject(document.getElementById('seleccion-ataque'))
-}
 window.addEventListener('load', runGame)

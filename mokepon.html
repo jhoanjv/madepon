@@ -12,7 +12,7 @@
 <body>
 
     <section id="sect-pets">
-        <h1 class="titulo">MOKEPON</h1> 
+        <h1 class="titulo">MOKEPON</h1>
         <h2 class="subtitulo">Selecciona tu mascota:</h2>
         <div class="tarjetas" id="tarjetas">
 
@@ -21,27 +21,36 @@
         <button class="btn-mascota" id="btn-mascota">Seleccionar</button>
     </section>
 
-    <section id="seleccion-ataque">
-        <h2>Selecciona tu ataque:</h2>
+    <section id="seleccion-ataque" class="seleccion-ataque">
+        <h1 class="titulo">MOKEPON</h1>
 
-        <p>Tu mascota <span id="pet-player"></span> tiene <span id="life-player"></span> vidas</p>
-        <p>La mascota del enemigo <span id="pet-enemy"></span> tiene <span id="life-enemy"></span> vidas</p>
+        <h2 class="subtitulo">Selecciona tu ataque:</h2>
+
         <p>
-            <button id="btn-fuego">Fuego</button>
-            <button id="btn-agua">Agua</button>
-            <button id="btn-tierra">Tierra</button>
+            <button id="btn-fuego" class="btn-ataque">Fuego</button>
+            <button id="btn-agua" class="btn-ataque">Agua</button>
+            <button id="btn-tierra" class="btn-ataque">Tierra</button>
         </p>
     </section>
 
-    <section id="sec-messages">
-
-    </section>
-
-    <section id="restart">
-        <button id="btn-restart" onclick="location.reload(true)">Reiniciar</button>
-    </section>
-
-
+    <div id="back-last-result">
+        <div id="last-result">
+            <button id="btn-restart" onclick="location.reload(true)">Reiniciar</button>
+        </div>
+    </div>
+    <div class="sec-messages-combat">
+        <div class="history-attack" id="attack-player">
+            Tu:
+            <span id="life-player"></span>
+            <span id="pet-player"></span>
+        </div>
+        <div class="history-attack" id="result">Resultado:
+        </div>
+        <div class="history-attack" id="attack-enemy">
+            Enemigo:
+            <span id="life-enemy"></span>
+            <span id="pet-enemy"></span>
+        </div>
+    </div>
 </body>
-
 </html>

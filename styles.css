@@ -5,7 +5,7 @@
 
 body {
     background-color: #213555;
-    color:#F5EFE7 ;
+    color: #F5EFE7;
 }
 
 #sect-pets {
@@ -43,20 +43,94 @@ input {
     display: flex;
 }
 
-.tarjeta-mokepon:hover{
+.tarjeta-mokepon:hover {
     cursor: pointer;
 }
 
-.tarjeta-mokepon img{
+.tarjeta-mokepon img {
     width: 80px;
 }
 
-.btn-mascota{
+.btn-mascota {
+    font-size: medium;
     width: 150px;
     height: 40px;
     background: #3E5879;
     border-radius: 10px;
-    border: 2px solid white;
+    border: none;
     color: #F5EFE7;
-    margin: 30px;
+    margin: 10px;
+}
+
+.seleccion-ataque {
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-ataque {
+    font-size: medium;
+    width: 150px;
+    height: 40px;
+    background: #3E5879;
+    border-radius: 10px;
+    border: none;
+    color: #F5EFE7;
+    margin: 10px;
+}
+
+#sec-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sec-messages-combat {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#back-last-result {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.39);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#last-result {
+    display: flex;
+    flex-direction: column-reverse;
+    background: #213555;
+    width: 250px;
+    height: 150px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-restart{
+    font-size: medium;
+    width: 150px;
+    height: 40px;
+    background: #3E5879;
+    border-radius: 10px;
+    border: none;
+    color: #F5EFE7;
+    margin: 10px;
+}
+
+.history-attack{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 200px;
+    background: #3E5879;
+    border-radius: 10px;
+    padding: 10px;
 }
